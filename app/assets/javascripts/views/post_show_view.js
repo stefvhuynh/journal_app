@@ -10,9 +10,9 @@ Journal.Views.PostShowView = Backbone.View.extend({
 
   events: {
     'dblclick .post-title': 'editTitle',
-    'dblclick .post-body': 'editBody',
-    'change .new-title':      'changeTitle',
-    'change .new-body':      'changeBody'
+    'dblclick .post-body':  'editBody',
+    'change .new-title':    'changeTitle',
+    'change .new-body':     'changeBody'
   },
 
   template: JST['post_show'],
