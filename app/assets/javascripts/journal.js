@@ -4,7 +4,9 @@ window.Journal = {
   Views: {},
   Routers: {},
   initialize: function() {
-    console.log("Loaded!");
+    Journal.posts = new Journal.Collections.Posts();
+    Journal.indexView = new Journal.Views.PostsIndexView();
+    Journal.posts.fetch();
   }
 };
 
