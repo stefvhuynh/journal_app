@@ -1,16 +1,14 @@
 <h2>New Post</h2>
 <form id='post-form'>
-  <label>
-    Title
-    <input type='text' name='post[title]' value=''>
-  </label>
+  <label for='post-title'>Title</label>
+  <br>
+    <input type='text' name='post[title]' id='post-title'>
   <br>
 
-  <label>
-    Body
+  <label for='post-body'>Body</label>
+  <br>
     <textarea name='post[body]'></textarea>
-  </label>
   <br>
 
-  <button>Submit</button>
+  <button class='new-button'>Submit</button>
 </form>
