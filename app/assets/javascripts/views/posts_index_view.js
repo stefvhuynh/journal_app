@@ -15,8 +15,6 @@ Journal.Views.PostsIndexView = Backbone.View.extend({
   render: function () {
     var content = this.template({ posts: Journal.posts });
     this.$el.html(content);
-    $('body').append(this.$el);
-
     return this;
   },
 
