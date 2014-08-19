@@ -1,1 +1,60 @@
-<h1>Journal App</h1>
+<header>Journal App</header>
+
+<div id='app-container'>
+  <section id='sidebar'></section>
+  <section id='content'></section>
+</div>
+
+<footer>Copyright 2014</footer>
+
+<style>
+  body, header, footer, h1, h2, div, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: lucida grande;
+    list-style: none;
+  }
+
+  header {
+    border-bottom: 5px solid black;
+    color: white;
+    background: #5882FA;
+    padding: 5px;
+    width: 100%;
+    font-size: 35px;
+  }
+
+  h2 {
+
+  }
+
+  footer {
+    padding: 5px;
+    border-top: 5px solid black;
+  }
+
+  #app-container {
+    position: relative;
+  }
+
+  #app-container:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  #sidebar {
+    padding: 10px;
+    width: 200px;
+    float: left;
+    border-right: 5px solid black;
+  }
+
+  #content {
+    padding: 10px 0 0 30px;
+    float:left;
+  }
+
+
+
+</style>

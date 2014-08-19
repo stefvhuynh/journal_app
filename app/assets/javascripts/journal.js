@@ -3,10 +3,18 @@ window.Journal = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
+  initialize: function () {
     Journal.posts = new Journal.Collections.Posts();
-    Journal.indexView = new Journal.Views.PostsIndexView();
-    Journal.posts.fetch();
+    Journal.posts.fetch({
+      success: function () {
+        Journal.router = new Journal.Routers.Posts(
+          $('#sidebar'),
+          $('#content')
+        );
+        Backbone.history.start();
+      }
+    });
+
   }
 };
 
