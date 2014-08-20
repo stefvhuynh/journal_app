@@ -38,7 +38,7 @@ gem 'spring',        group: :development
 gem 'backbone-on-rails'
 
 # Use debugger
-gem 'debugger', group: [:development, :test]
+# gem 'debugger', group: [:development, :test]
 
 group :development do
   gem 'better_errors'
