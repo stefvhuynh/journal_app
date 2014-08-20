@@ -45,5 +45,6 @@ group :development do
   gem 'pry-rails'
   gem 'binding_of_caller'
   gem 'quiet_assets'
+  gem 'rename'
 end
 
