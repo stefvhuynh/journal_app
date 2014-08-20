@@ -5,6 +5,10 @@ Journal.Routers.Posts = Backbone.Router.extend({
 
     var indexView = new Journal.Views.PostsIndexView();
     this.$sidebar.append(indexView.render().$el);
+
+    var latestPostId = Journal.posts.at(Journal.posts.length - 1).get('id');
+    var showView = new Journal.Views.PostShowView({ id: latestPostId });
+    this.$content.append(showView.render().$el);
   },
 
   routes: {
