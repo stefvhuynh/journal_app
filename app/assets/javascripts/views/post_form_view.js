@@ -24,7 +24,7 @@ Journal.Views.PostFormView = Backbone.View.extend({
 
       success: function (data) {
         var id = data.get('id');
-        var fragment = 'posts/' + id;
+        var fragment = '#/posts/' + id;
         Journal.router.navigate(fragment, { trigger: true });
       },
 
@@ -43,7 +43,7 @@ Journal.Views.PostFormView = Backbone.View.extend({
 
     for (var key in errors) {
       for (var i = 0; i < errors[key].length; i++) {
-        var $li = $('<li class="error-li">' + key + ' ' + errors[key][i] + '!</li>');
+        var $li = $('<li class="error-li"><small>' + key + ' ' + errors[key][i] + '!</small></li>');
         $ul.append($li);
       }
     }

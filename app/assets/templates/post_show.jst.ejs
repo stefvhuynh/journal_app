@@ -1,4 +1,5 @@
 <article>
   <h2 class='post-title'><%= post.escape('title') %></h2>
   <p class='post-body'><%= post.escape('body') %></p>
+  <small class='created-date'>created on: <%= $.format.date(post.escape('created_at'), 'E MMM yyyy @ h:mm a') %></small>
 </article>
