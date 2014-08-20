@@ -1,3 +1,12 @@
+<script>
+$(document).ready(function(e) {
+  $("#app-container").resize(function () {
+    console.log("hsfgids");
+    $('#sidebar').css('height', $('#app-container').innerHeight());
+  });
+});
+</script>
+
 <header>
   <nav class='group'>
     <h1 class='header-logo'>Journal App</h1>
@@ -120,12 +129,14 @@
     float: left;
     display: block;
     border-right: 5px solid black;
-    min-height: 250px;
+    height: 500px;
+    overflow: auto;
   }
 
   #content {
     padding: 10px 0 0 30px;
-    overflow: hidden;
+    max-height: 500px;
+    overflow: auto;
   }
 
   .header-logo {
@@ -137,7 +148,7 @@
   }
 
   .new-button {
-    margin: 5px 0;
+    margin: 5px 0 10px 0;
     padding: 10px;
     background: #5882FA;
     border-radius: 3px;

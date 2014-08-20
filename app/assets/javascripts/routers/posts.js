@@ -3,17 +3,24 @@ Journal.Routers.Posts = Backbone.Router.extend({
     this.$sidebar = $sidebar;
     this.$content = $content;
 
-    var indexView = new Journal.Views.PostsIndexView();
-    this.$sidebar.append(indexView.render().$el);
+    this.index();
 
-    var latestPostId = Journal.posts.at(Journal.posts.length - 1).get('id');
-    var showView = new Journal.Views.PostShowView({ id: latestPostId });
-    this.$content.append(showView.render().$el);
+    if (Journal.posts.length > 0) {
+      var latestPostId = Journal.posts.at(Journal.posts.length - 1).get('id');
+      this.show(latestPostId);
+    } else {
+      this.new();
+    }
   },
 
   routes: {
     'posts/new': 'new',
     'posts/:id': 'show'
+  },
+
+  index: function() {
+    var indexView = new Journal.Views.PostsIndexView();
+    this.$sidebar.append(indexView.render().$el);
   },
 
   new: function () {
@@ -26,6 +33,12 @@ Journal.Routers.Posts = Backbone.Router.extend({
     this.$content.empty();
     var showView = new Journal.Views.PostShowView({ id: id });
     this.$content.append(showView.render().$el);
+  },
+
+  destroy: function (post) {
+    this.$content.empty();
+    var title = post.escape('title');
+    this.$content.append('<h2>' + title + ' destroyed!</h2>');
   }
 
 });
