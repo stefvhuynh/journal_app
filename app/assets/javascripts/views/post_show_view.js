@@ -3,7 +3,7 @@ Journal.Views.PostShowView = Backbone.View.extend({
     this.id = parseInt(params.id);
 
     this.listenTo(Journal.posts,
-      'sync reset change:title',
+      'sync reset change:title change:body',
       this.render
     );
   },
@@ -12,7 +12,9 @@ Journal.Views.PostShowView = Backbone.View.extend({
     'dblclick .post-title': 'editTitle',
     'dblclick .post-body':  'editBody',
     'change .new-title':    'changeTitle',
-    'change .new-body':     'changeBody'
+    'change .new-body':     'changeBody',
+    'blur .new-title':      'restoreTitle',
+    'blur .new-body':       'restoreBody'
   },
 
   template: JST['post_show'],
@@ -26,25 +28,29 @@ Journal.Views.PostShowView = Backbone.View.extend({
   },
 
   editTitle: function (event) {
-    var oldTitle = event.currentTarget.textContent;
+    this.$oldTitle = $(event.currentTarget);
+    var oldTitleText = event.currentTarget.textContent;
+    var $input = $('<input type="text" class="new-title">');
 
-    $('.post-title').replaceWith(function () {
-      var $input = $('<input type="text" class="new-title">');
-      $input.attr('value', oldTitle);
-
-      return $input;
-    });
+    $('.post-title').replaceWith($input);
+    var $newInput = $('.new-title');
+    $newInput.focus();
+    // next two lines are required to put cursor at end of line
+    // hacky, I know...
+    $newInput.val('');
+    $newInput.val(oldTitleText);
   },
 
   editBody: function (event) {
-    var oldBody = event.currentTarget.innerHTML;
+    this.$oldBody = $(event.currentTarget);
+    var oldBodyText = event.currentTarget.innerHTML;
+    var $input = $('<textarea class="new-body"></textarea>');
 
-    $('.post-body').replaceWith(function () {
-      var $input = $('<textarea class="new-body"></textarea>');
-      $input.html(oldBody);
-
-      return $input;
-    });
+    $('.post-body').replaceWith($input);
+    var $newInput = $('.new-body');
+    $newInput.focus();
+    $newInput.html('');
+    $input.html(oldBodyText);
   },
 
   changeTitle: function (event) {
@@ -53,10 +59,18 @@ Journal.Views.PostShowView = Backbone.View.extend({
     post.save({title: newTitle});
   },
 
+  restoreTitle: function (event) {
+    $('.new-title').replaceWith(this.$oldTitle);
+  },
+
   changeBody: function (event) {
     var newBody = $(event.currentTarget).val();
     var post = Journal.posts.get(this.id);
     post.save({body: newBody});
-  }
+  },
+
+  restoreBody: function (event) {
+    $('.new-body').replaceWith(this.$oldBody);
+  },
 
 });

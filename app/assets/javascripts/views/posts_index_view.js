@@ -22,5 +22,6 @@ Journal.Views.PostsIndexView = Backbone.View.extend({
     var dataId = parseInt($(event.currentTarget).attr('data-id'));
     var post = Journal.posts.findWhere({ id: dataId });
     post.destroy();
+    Journal.router.destroy(post);
   }
 });
